@@ -103,21 +103,6 @@ def sm_search_bidirection(motor, step, power_meter):
 
     return position_zero + max_movement * step, power_dict[max_movement]
 
-
-def pz_linear_move_higher_power(motor, step, power_meter):
-    # return positive = 1 / negative = -1 / stand still = 0
-    # TODO
-
-    return movement
-
-
-def pz_rotate_move_higher_power(motor, step, power_meter):
-    # return positive = 1 / negative = -1 / stand still = 0
-    # TODO
-
-    return movement
-
-
 def main():
     # initialize
     initialize_device()
@@ -148,13 +133,8 @@ def main():
     powerMeter = Power_Meter(PM_GPIB_CHANNEL, POWER_METER_CHANNEL)
 
     # seraching best position
-    sm_move_higher_power(stepperMotorLinearContainer + stepperMotorRotationContainer, SM_MOV_STEP, powerMeter)
+    sm_move_higher_power_v2(stepperMotorLinearContainer + stepperMotorRotationContainer, SM_MOV_STEP, powerMeter)
 
-    ######################## PZT MOVEMENT ########################
-    # initialize six Piezo motor
-    # piezoMotorContainer = [PZ_Motor(list(i.values[0]), list(
-    #    i.values[1])) for i in MotorList.Stepper_Motor_List]
-    # TODO
 
     print("Position alignment finished. Current power is {:.3f} microW".format(powerMeter.query_power() * 1e6))
 
